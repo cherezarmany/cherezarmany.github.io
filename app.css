@@ -408,7 +408,7 @@ a:hover{
   left: -30px;
   top: 0;
   content: '';
-  background: url(img/curves.png) no-repeat center center;
+  background: url(/curves.png) no-repeat center center;
 }
 
 .carousel-control-next, .carousel-control-prev{
