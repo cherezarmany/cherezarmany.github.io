@@ -1,1 +1,1063 @@
-work it
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|PT+Sans+Narrow&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="app.css">
+
+    <title>Опрос Ньюмана</title>
+  </head>
+  <body>
+    <div class="loading">
+      <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+      </div>
+    </div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="index-tab" data-toggle="tab" href="#index" role="tab" aria-controls="index" aria-selected="true">Главная</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="work-tab" data-toggle="tab" href="#work" role="tab" aria-controls="work" aria-selected="false">Опросов</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pay-tab" data-toggle="tab" href="#pay" role="tab" aria-controls="pay" aria-selected="false">Выплаты</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="verify-tab" data-toggle="tab" href="#verify" role="tab" aria-controls="verify" aria-selected="false">Верификация</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="doc-tab" data-toggle="tab" href="#doc" role="tab" aria-controls="doc" aria-selected="false">Договор</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="payid-tab" data-toggle="tab" href="#payid" role="tab" aria-controls="payid" aria-selected="false">Успешная оплата</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="notpayid-tab" data-toggle="tab" href="#notpayid" role="tab" aria-controls="notpayid" aria-selected="false">Не успешная оплата</a>
+      </li>
+    </ul>
+
+
+    <div class="container root h-100">
+      <div class="header">
+        <div class="uid">
+          Номер лицевого счета: <b class="local" data-store="uid"></b>
+          <div class="cgray">Используете его для обращения в службу поддержки</div>
+        </div>
+        <div class="profile">
+            На Вашем счету: <b class="local" data-store="balance"></b> рублей
+          <div>
+            <a class="goto" href="#pay">Вывести средства</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="index" role="tabpanel" aria-labelledby="index-tab">
+          <div class="title">
+            <h1>Опрос Ньюмана</h1>
+            <p>
+              Опрос стартует 4 раза в год в случайное время.<br>
+              <u>Банк опроса ограничен, соответственно количество выплат так же ограничено.</u><br>
+              Если Вы попали на этот опрос, значит Вам уже повезло!
+            </p>
+          </div>
+          <div class="statistic">
+            <div class="row">
+              <div class="col-lg-4">
+                <h3 class="cgreen">Всего выплачено</h3>
+                <div id="total-counter" class="counter cgreen">1962473</div>рублей
+              </div>
+              <div class="col-lg-4">
+                <h3 class="cred">Осталось в банке</h3>
+                <div id="total-bank" class="counter cred tbig">523466</div>рублей
+              </div>
+              <div class="col-lg-4">
+                <h3 class="cpurple">Возможный гонорар</h3>
+                <div id="total-foryou" class="counter cpurple">45212</div>рублей
+              </div>
+              <div class="col-lg-12">
+                <a href="#work" class="btn gotowork">Приступить к опросу</a>
+                <form class="signin">
+                  <div class="form-group">
+                    <input type="email" placeholder="Введите Вашу почту" required="true">
+                  </div>
+                  <button type="submit" class="btn">Приступить к опросу</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="payid" role="tabpanel" aria-labelledby="payid-tab">
+          <div class="title">
+            <h1>Выплата успешно произведена</h1>
+            <p>
+              Обычно выплата происходит мгновенно<br>
+              <u>В редких случаях может быть задержана до 5-ти рабочих дней</u><br>
+            </p>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="notpayid" role="tabpanel" aria-labelledby="notpayid-tab">
+          <div class="title">
+            <h1>Неуспешная оплата</h1>
+            <p>
+              При попытке идентифицировать личность произошел сбой<br>
+            </p>
+          </div>
+          <a href="#pay" class="btn">Попробовать еще раз</a>
+        </div>
+
+
+
+        <div class="tab-pane fade" id="work" role="tabpanel" aria-labelledby="work-tab">
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+          <div id="workCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <h2>Какой Ваш возраст?</h2>
+                <div class="row">
+                  <div class="col-md-6">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      От 18 до 25
+                    </a>
+                  </div>
+                  <div class="col-md-6">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      От 25 до 35
+                    </a>
+                  </div>
+                  <div class="col-md-6">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      От 35 до 50
+                    </a>
+                  </div>
+                  <div class="col-md-6">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      От 50 и больше
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <h2>Ваш пол?</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Мужской
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Женский
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Другое
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <h2>Ваше семейное положение</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Женат/Замужем
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      В разводе/Вдова/Вдовец
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Не замужем/Холост
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="carousel-item">
+                <h2>Ваше отношение к рекламе</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Всегда пропускаю
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Пропускаю не интересную
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Всегда смотрю
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <h2>Какие сигареты Вы курите?</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Parliament
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Marlboro
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Philip Morris
+                    </a>
+                  </div>
+
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Bond
+                    </a>
+                  </div>
+
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Winston
+                    </a>
+                  </div>
+
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Другие или не курю
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <h2>Где чаще всего Вы покупаете продукты?</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Пятерочка
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Ашан
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Магнит
+                    </a>
+                  </div>
+
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Линия
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Лента
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Другое
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <h2>Как часто Вы отдыхаете за границей?</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Несколько раз в год
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Один раз в год
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Раз в несколько лет
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <h2>Как часто Вы пьете кофе?</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Каждый день
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Редко
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Никогда
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <h2>Каким телефоном Вы пользуетесь?</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Xiaomi
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Apple
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Samsung
+                    </a>
+                  </div>
+
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Nokia
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Honor
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Другое
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <h2>Какой ваш среднимесечный заработок?</h2>
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      До 15 000 рублей
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      От 15 000 до 35 000 рублей
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#workCarousel" role="button" data-slide="next">
+                      Свыше 35 000 рублей
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <h2>Спасибо за Ваши ответы!</h2>
+                <p class="text-center">Ваш баланс успешно пополнен. Теперь Вы можете совершить свою первую выплату.</p>
+                <a class="btn d-table" href="#pay">Перейти к выводу средств</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="tab-pane fade" id="verify" role="tabpanel" aria-labelledby="verify-tab">
+          <div class="title">
+            <h1>Верификация аккаунта</h1>
+            <p>
+              Верификация аккаунта служит защитой от массовой регистрации аккаунтов ботами
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="content text-center">
+                <p>Верификация &mdash; это подтверждение Вашей личности с целью защиты от массовых регистраций.</p>
+                <p>Данную верификацию проходят все участники и она не занимает много времени.</p>
+                <p>Пройти ее может каждый, кому исполнилось 18 лет. Для этого необходимо совершить платеж в биллинговую систему.</p>
+                <p>В дальнейшем Ваш баланс будет переведет на карту/кошелек, с которого была произведена верификация.</p>
+                <p>После совершения платежа вы будите перенаправлены на сайт, и статус Вашей заявки на Вывод перейдет в обработку платежной системой.</p>
+                <p class="cred">Важно! Данный платеж будет зачислен Вам на личный счет и будет доступен для дальнейшего вывода.</p>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <a href="#" class="btn">Пройти верификацию</a>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="tab-pane fade" id="pay" role="tabpanel" aria-labelledby="pay-tab">
+          <div class="title">
+            <h1>Запрос выплаты</h1>
+            <p>
+              Процесс выплаты происходит моментально через платежный шлюз без участия оператора
+            </p>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <form class="getpay">
+                <div class="form-group">
+                  <label for="paySum">Укажите сумму для вывода</label>
+                  <input type="text" id="paySum" placeholder="Сумма для вывода" class="local" data-store="balance">
+                  <small class="form-text text-muted">Сумма указывается в рублях без пробелов и запятых</small>
+                </div>
+                <button type="submit" class="btn">Произвести выплату</button>
+              </form>
+            </div>
+            <div class="col-md-12">
+              <h4 class="text-center">История выплат</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID платежа</th>
+                    <th scope="col">Сумма</th>
+                    <th scope="col">Направление</th>
+                    <th scope="col">Дата</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="4" class="text-center">
+                      <big class="form-text text-muted">Нет совершенных выплат</big>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="doc" role="tabpanel" aria-labelledby="doc-tab">
+          <h1 class="text-center">Пользовательское соглашение</h1>
+          <p>Настоящее пользовательское соглашение (далее "Соглашение"), регулирует отношения между администрацией и пользователем сайта, предоставляющей услуги по использованию продукта, размещенного в сети интернет на интернет-сайте <span class="local" data-store="site"></span> и других доменах, принадлежащих на правах интеллектуальной собственности администрации.</p>
+
+          <p>Пользователь, принимая условия настоящего соглашения, подтверждает, что он достиг совершеннолетнего возраста, и вправе заключать настоящее соглашение, несовершеннолетние лица обязаны получить разрешение родителей или опекунов на пользование услугами продукта. В случае если вам, в соответствии с законами вашего государства, запрещено использовать информационные продукты или существуют иные законодательные ограничения, включая ограничения по возрасту допуска к таким услугам, вы не вправе использовать продукт и обязуетесь немедленно прекратить использование продукта.</p>
+
+          <p>Правообладателем и разработчиком продукта является администрация. Все авторские, смежные и иные права на продукт, включая программный код, файлы продукта, графика, звуковое сопровождение, диалоги и тексты, так же другие объекты авторского права принадлежат на правах собственности администрации и защищаются законодательством об охране интеллектуальной собственности и авторских правах. Несанкционированное использование продукта или элементов продукта запрещается. Начиная пользоваться продуктом, пользователь дает согласие на получение от администрации и ее партнеров информационной рассылки, в том числе, но не ограничиваясь этим: новостей, извещений, уведомлений, напоминаний, предупреждений, связанных с продуктом, посредством электронной почты, на адрес, указанный пользователем при регистрации, либо адрес, указанный им в процессе использования продукта. Настоящее соглашение может быть изменено администрацией в любое время без предварительного уведомления пользователей. Действующая версия соглашения расположена на интернет-сайте продукта. Пользователю рекомендуется проверять данное соглашение на интернет-сайте продукта не менее чем раз в 14 дней. В соответствии с настоящим соглашением администрация представляет пользователю услугу доступа к интернет-ресурсу, на котором расположен продукт и дальнейшее его использование. Согласие пользователя с положениями настоящего соглашения является обязательным условием для начала использования продукта.</p>
+
+          <p>Продукт - это платный опрос который оплачивает клиент-покупатель, далее по тексту «продукт». Цель - ответить на все вопросы и возможно в конце получить вознаграждение, но мы не обещаем, что вам гарантированно поступит вознаграждение, потому что выплату получают выборочно, некоторые участники, на усмотрение администрации интернет продукта. Начало использование продукта, а именно, нажатие на кнопку «Пройти опрос» подтверждает присоединение пользователя к данному соглашению. Если пользователь не принимает условий настоящего соглашения, то он не имеет права использовать продукт. Соглашение действительно до момента прекращения его действия по инициативе администрации. Программное обеспечение, необходимое для доступа к продукту, находится в свободном доступе на официальном сайте продукта. Пользователь самостоятельно за свой счет оплачивает доступ в сеть Интернет. Использование продукта производится пользователем исключительно самостоятельно и по принципу "как есть", то есть администрация не отвечает перед пользователем ни при каких обстоятельствах за любой прямой, косвенный, случайный, специальный, вытекающий ущерб, упущенную выгоду, ущерб репутации или иной ущерб, которые могут быть у пользователя, в связи с использованием продукта или невозможностью его использования. Пользователь соглашается с тем, что продукт является платным опросом и возможность получить вознаграждение есть не у каждого а выборочно, которые ни в коем случае не обещают и не гарантируют получение пользователем обещанных вознаграждений. Начиная пользоваться продуктом, пользователь понимает и принимает тот факт, что он платит за платные опросы и возможно не получит вознаграждения и гарантирует, что с его стороны в отношении администрации, не будут предъявлены какие-либо претензии имущественного или иного характера. Все используемые или упоминаемые в продукте товарные знаки и иные обозначения товаров или услуг принадлежат их законным правообладателям.</p>
+
+          <p>Все иные права, явно не указанные как принадлежащие третьим лицам, принадлежат Администрации или законным правообладателям таких прав. Все названия и контактные данные, используемые в продукте указаны для поддержки клиентов. Любые общедоступные и платные сервисы или услуги в продукте предоставляются исключительно администрацией. С целью прохождения платного опроса, пользователь оплачивает новые уровни платного опроса. Цена платных услуг устанавливается администрацией на момент их продажи пользователю и может быть изменена в любой момент. Согласие пользователя с положениями настоящего соглашения подтверждает, что он уведомлен, что регулярное длительное нахождение у персонального компьютера может вызывать различные осложнения физического состояния. Пользователь настоящим уведомлен, что продукт может предусматривать различные звуковые и видео эффекты, которые, при определенных обстоятельствах, могут вызывать у лиц, склонных к эпилептическим или иным расстройствам нервного характера, обострение указанных состояний, и пользователь гарантирует, что указанными расстройствами он не страдает, или же обязуется продукт не использовать. Для сбора статистических данных и идентификации пользователей администрация может отслеживать и сохранять информацию об IP-адресах пользователя, с которых осуществляется доступ к продукту, использовать файлы технической информации (cookies), майл адреса, мобильных номеров размещаемые на персональном компьютере пользователя посредством клиентской части продукта.</p>
+
+          <p>Возврат автоматически использованых средств возможно при условие что вы получили вознаграждение, если вы не были выбраны получателем вознаграждений сайтом-опросом, автоматически возврат средств отменяется, и начиная опрос вы соглашаетесь с данными условиями сайта, и не имеете притензий к организаторам акции.</p>
+
+          <p>Мы не имеем отношения к внешней рекламе которая крутится на наши проекты, за нее ответственность несут источники кто ее распространяет, мы сами не покупаем и не привлекаем рекламу никаким образом</p>
+
+          <p>Мы полностью отказываемся нести ответственность за любые действия совершённые на сайте, и находясь тут вы принимаете их, если не согласны просим покинуть данный сайт.</p>
+
+          <p>Пользователь ознакомлен и согласен со всеми пунктами настоящего соглашения. Контактные данные для связи с администрацией: <span class="local" data-store="support"></span></p>
+
+          <p>
+            <a href="#work" class="btn">Пройти опрос</a>
+          </p>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="container mt-4">
+      <h2 class="text-center">Последние комментарии</h2>
+      <div class="reviews">
+        <div class="item resp">
+          <div class="d-flex">
+            <img src="/img/a18.jpg">
+            <div class="inner">
+              <div class="author">Лариса Ивановна</div>
+              <div class="text">Получила уже вторую выплату за 4-ре часа. Спасибо Вам!</div>
+              <div class="date"></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="d-flex">
+              <img src="/img/support.png">
+              <div class="inner">
+                <div class="author">Служба поддержки</div>
+                <div class="text">Пожалуйста. Спасибо за Ваш отзыв!</div>
+                <div class="date"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="d-flex">
+            <img src="/img/a2.jpg">
+            <div class="inner">
+              <div class="author">Федосей</div>
+              <div class="text">Вывел :)</div>
+              <div class="date"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="d-flex">
+            <img src="/img/a3.jpg">
+            <div class="inner">
+              <div class="author">Никита Баринов</div>
+              <div class="text">Ожидал выплаты около 15 минут. Уже начал переживать... Получил, радуюсь. Всем удачи!</div>
+              <div class="date"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item resp">
+          <div class="d-flex">
+            <img src="/img/a4.jpg">
+            <div class="inner">
+              <div class="author">Антон Простов</div>
+              <div class="text">У меня платеж в обработке уже 30 минут. Из-за чего такое может быть?</div>
+              <div class="date"></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="d-flex">
+              <img src="/img/support.png">
+              <div class="inner">
+                <div class="author">Служба поддержки</div>
+                <div class="text">Обработали Вашу выплату вручную. Иногда такое может случится. Обычно выплата происходит в течение 10 минут, но может быть обработана до 5-ти рабочих дней. Это связано с большой загрузкой системы, которая перенаправляет выплаты в ручной режим.</div>
+                <div class="date"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item resp">
+          <div class="d-flex">
+            <img src="/img/a5.jpg">
+            <div class="inner">
+              <div class="author">Дарья Симончук</div>
+              <div class="text">Получила, но только на 6 000 меньше чем отправила на вывод. Как мне быть?</div>
+              <div class="date"></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="d-flex">
+              <img src="/img/support.png">
+              <div class="inner">
+                <div class="author">Служба поддержки</div>
+                <div class="text">Дарья, извините за накладку. Проверьте карту, мы отправили остаток.</div>
+                <div class="date"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="d-flex">
+            <img src="/img/a6.jpg">
+            <div class="inner">
+              <div class="author">Алиса</div>
+              <div class="text">Отличный сайт. Рада до безумия. Счастье то какое, даже не верится))))</div>
+              <div class="date"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="d-flex">
+            <img src="/img/a7.jpg">
+            <div class="inner">
+              <div class="author">Мария</div>
+              <div class="text">Отправила на вывод и через 10 минут получила на карту всю сумму. Даже не поверила, просто сидела в кафе и с телефона решила пройти опрос. Спасибо Вам больше!</div>
+              <div class="date"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item resp">
+          <div class="d-flex">
+            <img src="/img/a8.jpg">
+            <div class="inner">
+              <div class="author">Борис Абрамович</div>
+              <div class="text">Сначала получил 12 000 рублей, а во второй раз получил сумму в два раза больше. С чем это связано?</div>
+              <div class="date"></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="d-flex">
+              <img src="/img/support.png">
+              <div class="inner">
+                <div class="author">Служба поддержки</div>
+                <div class="text">Это зависит от наших рекламодателей. Одни платят мало, другие больше. Система старается распределить максимально эффективно. Наращивайте свой ранг и Вы будите получать более высокооплачиваемые вопросы.</div>
+                <div class="date"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item resp">
+          <div class="d-flex">
+            <img src="/img/a9.jpg">
+            <div class="inner">
+              <div class="author">Алефтина</div>
+              <div class="text">Великолепно! Уже купила билеты отдохнуть. Взяла отпуск и отдохну. Глаза на лоб полезли, когда действительно пришла СМС от банка. Думала шутка...</div>
+              <div class="date"></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="d-flex">
+              <img src="/img/support.png">
+              <div class="inner">
+                <div class="author">Служба поддержки</div>
+                <div class="text">Спасибо за отзыв, Алефтина. Продолжайте отвечать на вопросы и повышайте рейтинг у рекламодателей. Надеемся на долгосрочное сотрудничество.</div>
+                <div class="date"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item resp">
+          <div class="d-flex">
+            <img src="/img/a10.jpg">
+            <div class="inner">
+              <div class="author">Дарьяна</div>
+              <div class="text">Отличный сервис. После первого вывода я получила второй уровень рейтинга. На что это влияет?</div>
+              <div class="date"></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="d-flex">
+              <img src="/img/support.png">
+              <div class="inner">
+                <div class="author">Служба поддержки</div>
+                <div class="text">Дарьяна, рейтинг влияет на стоимость и качество вопросов. Чем выше рейтинг, тем больше Вы зарабатываете с каждого вопроса. Мы ценим опытных сотрудников.</div>
+                <div class="date"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item resp">
+          <div class="d-flex">
+            <img src="/img/a11.jpg">
+            <div class="inner">
+              <div class="author">Вадим</div>
+              <div class="text">Ожидаю выплату уже 4 часа. Такое чувство что это все обман...</div>
+              <div class="date"></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="d-flex">
+              <img src="/img/support.png">
+              <div class="inner">
+                <div class="author">Служба поддержки</div>
+                <div class="text">Вадим, проверили аккаунт, сделали выплату в ручном режиме. Извините за задержку.</div>
+                <div class="date"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item resp">
+          <div class="d-flex">
+            <img src="/img/a12.jpg">
+            <div class="inner">
+              <div class="author">Константин</div>
+              <div class="text">Получил выплату в течении 3х минут. Очень быстро. Уже рассказал друзьям, надеюсь они тут тоже напишут отзывы</div>
+              <div class="date"></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="d-flex">
+              <img src="/img/support.png">
+              <div class="inner">
+                <div class="author">Служба поддержки</div>
+                <div class="text">Константин, Вы можете сообщить своим друзьям Ваш номер счета, при выводе они могут его указать в поле "Кто Вас пригласил" и Вы получите денежное вознаграждение за каждого привлеченного участника.</div>
+                <div class="date"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="d-flex">
+            <img src="/img/a13.jpg">
+            <div class="inner">
+              <div class="author">Павел Николько</div>
+              <div class="text">Отлично. Вывел, все шоколадно. Жизнь удалась :D Уже пошел за новым самокатом!</div>
+              <div class="date"></div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="d-flex">
+            <img src="/img/a14.jpg">
+            <div class="inner">
+              <div class="author">Юлия</div>
+              <div class="text">Стояла у терминала 15-ть минут, пока выводила деньги с карты. Начали уже подозрительно поглядывать на меня, а я почти плачу от радости!</div>
+              <div class="date"></div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="d-flex">
+            <img src="/img/a15.jpg">
+            <div class="inner">
+              <div class="author">Надежда</div>
+              <div class="text">Мне уже второй раз везет попасть на подобный сервис. Часто попадаю к мошенникам, но один раз попав на подобный - окупает все попытки заработать на других.</div>
+              <div class="date"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="review-form">
+        <h3 class="text-center mt-5">Оставьте свой отзыв или комментарий</h3>
+        <form>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Выберете Ваше фото</label>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="Ваше имя">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="mess" placeholder="Ваше сообщение"></textarea>
+          </div>
+          <button type="submit" class="btn">Отправить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="doclink text-center mb-4">
+        <p>Приступая к опросу я подтверждаю свое согласие с <a href="#doc">договором офертой</a></p>
+        <p>Сервис не собирает и не обрабатывает персональные данные.</p>
+        <p>Все высказывания и примеры на сайте по поводу увеличения, получения доходов или прибылей, уже размещенные или которые будут размещены на ресурсе cardbank.info (в дальнейшем Сайты) - всего лишь предположения по поводу предстоящих или текущих заработков, доходов, поэтому не являются гарантией их получения. Если предположительные прибыли или увеличение предстоящих доходов Вы считаете гарантированными, то также берете на себя все риски по их неполучению.</p>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="modalMinPay" tabindex="-1" role="dialog" aria-labelledby="modalMinPayLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Минимальная сумма</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Система берет на себя все комиссии и сборы за переводы, поэтому мы были вынуждены установить минимальную сумму на вывод - <b>1000 рублей</b>.
+          </div>
+          <div class="modal-footer">
+            <a href="#work" class="btn">Перейти к опросу</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalNotBalance" tabindex="-1" role="dialog" aria-labelledby="modalNotBalanceLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Недостаточно средств</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Мы не можем произвести выплату, которая превышает Ваш текущий баланс.
+          </div>
+          <div class="modal-footer">
+            <a href="#work" class="btn">Перейти к опросу</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="alert alert-win" role="alert">
+      Whenever you need to, be sure to use margin utilities to keep things nice and tidy.
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/moment.min.js"></script>
+    <script>
+      $(function(){
+
+        $('.review-form form').submit(function(){
+          let name = $('.review-form input[name=name]');
+          let mess = $('.review-form textarea');
+
+          $('.reviews').append($('<div class="item"><div class="d-flex"><img src="/img/loading.gif"><div class="inner"><div class="author">'+name.val()+'</div><div class="text">'+mess.val()+'</div><div class="date">Опубликовано только что</div></div></div></div>').hide().fadeIn(2000));
+          name.val('');
+          mess.val('');
+          return false;
+        });
+        $('.carousel').carousel({
+          wrap: false,
+          interval: false,
+        });
+        function isAuth(){
+          if(localStorage.getItem('email')){
+            return true;
+          }else{
+            return false;
+          }
+        }
+        function randomInteger(min, max) {
+          var rand = min - 0.5 + Math.random() * (max - min + 1)
+          rand = Math.round(rand);
+          return rand;
+        }
+        function makeStr(length){
+          var text = "";
+          var possible = "abcdefghijklmnopqrstuvwxyz";
+
+          for (var i = 0; i < length; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
+          return text;
+        }
+        function randomEmail(){
+          return makeStr(randomInteger(1, 4)) + '*'.repeat(randomInteger(3, 5)) + '@' + '*'.repeat(randomInteger(3, 5)) + '.ru';
+        }
+
+        (function(){
+          let hash = window.location.hash;
+          if(hash){
+            if(isAuth()){
+              $('.nav-link[href="' + hash + '"]').tab('show');
+            }else{
+              window.location.hash = '#index';
+            }
+          }
+        })();
+
+        var lastDate = new Date();
+        $($(".reviews .date").get().reverse()).each(function(){
+          lastDate -= randomInteger(2000000, 5000000);
+          let eachDate = new Date(lastDate);
+          $(this).text(moment(eachDate).format('DD.MM.YYYY hh:mm:ss'));
+        });
+
+        $('#workCarousel').on('slide.bs.carousel', function (e) {
+          if(e.to == 6){
+            let balance = localStorage.getItem('balance');
+            let newBalance = parseInt(balance) + randomInteger(10000, 25000);
+
+            $('.local[data-store=balance]').text(newBalance);
+            $('input.local[data-store=balance]').val(newBalance);
+            localStorage.setItem('balance', newBalance)
+
+          }
+          let slideWidth = $('#work .progress').width() / 10;
+          $('#work .progress-bar').width($('#work .progress-bar').width() + slideWidth + 'px');
+        })
+
+
+        /*
+          Обработка aлертов
+        */
+        setInterval(function(){
+          $(".alert-win").text(randomEmail() + ' вывел ' + randomInteger(5000, 20000) + ' рублей').fadeIn().delay(4000).fadeOut();
+        }, 15000);
+        
+        /*
+          Конец Обработки aлертов
+        */
+        
+
+        /*
+          Обработка отправки форм
+        */
+
+
+        $('.getpay').on('submit', function(){
+          let balance = parseInt(localStorage.getItem('balance'));
+          let input = parseInt($(this).find('input[data-store=balance]').val());
+          if(input > 1000){
+            if(input > balance){
+              $('#modalNotBalance').modal('show');
+            }else{
+              location.hash = '#verify';
+            }
+          }else{
+            $('#modalMinPay').modal('show');
+            
+          }
+          return false;
+        });
+
+        $('.signin').on('submit', function(){
+          let email = $(this).find('input[type=email]').val();
+          let uid = (Math.round(100000 + Math.random() * (999999 - 100000))).toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ');
+          let balance = 500;
+
+          $('.gift[data-toggle="popover"]').popover('show');
+
+          localStorage.setItem('email', email);
+          $('.local[data-store=email]').text(email);
+          $('input.local[data-store=email]').val(email);
+
+          localStorage.setItem('uid', uid);
+          $('.local[data-store=uid]').text(uid);
+          $('input.local[data-store=uid]').val(uid);
+
+          localStorage.setItem('balance', balance);
+          $('.local[data-store=balance]').text(balance);
+          $('input.local[data-store=balance]').val(balance);
+
+          $('#work-tab').tab('show');
+          return false;
+        });
+        /*
+          Конец обработки форм
+        */
+
+        /*
+          Начало работы с таймерами
+        */
+        var timers = [];
+        startSimers();
+        function setIntervalAndExecute(fn, t) {
+          fn();
+          return(setInterval(fn, t));
+        }
+        
+        function startSimers(){
+          timers[0] = setInterval(totalPayCounter, 1000);
+          timers[1] = setInterval(totalBankCounter, 100);
+          timers[2] = setInterval(totalYouCounter, 700);
+        }
+
+        function totalPayCounter(){
+          let start = $('#total-counter').text();
+          $('#total-counter').text(parseInt(start) + 11854);
+        }
+
+        function totalBankCounter(){
+          let start = $('#total-bank').text();
+          $('#total-bank').text(parseInt(start) - 160);
+        }
+
+        function totalYouCounter(){
+          let start = $('#total-foryou').text();
+          $('#total-foryou').text(parseInt(start) - 99);
+        }
+
+        $('a#index-tab').on('hidden.bs.tab', function (e) {
+          $(timers).each(function(i){
+            clearInterval(timers[i]);
+            
+          });
+          timers = [];
+        });
+
+        $('a#index-tab').on('show.bs.tab', function (e) {
+          startSimers();
+        });
+        /*
+          Конец работы с таймерами
+        */
+
+        /*
+          Начало  работы со сторейджем
+        */
+
+        localStorage.setItem('site', window.location.hostname);
+        localStorage.setItem('support', 'getmymoney@plz.net');
+
+        $('.local').each(function(){
+          $(this).text(localStorage.getItem($(this).data('store')));
+          if($(this).prop("tagName") == 'INPUT'){
+            $(this).val(localStorage.getItem($(this).data('store')));
+          }
+        });
+
+        if(isAuth() && window.location.hash == ''){
+          $('#index-tab').tab('show');
+        }
+
+        function isShowBlock(selector, inverse){
+          if(isAuth() == inverse){
+            $(selector).show();
+          }else{
+            $(selector).hide();
+          }
+        }
+
+        isShowBlock('.header', true)
+        isShowBlock('.signin', false);
+        isShowBlock('.gotowork', true);
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+          isShowBlock('.header', true)
+          isShowBlock('.signin', false);
+          isShowBlock('.gotowork', true);
+        });
+        /*
+          Конец  работы со сторейджем
+        */
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+          var hash = $(e.target).attr('href');
+          location.hash = hash;
+        });
+
+        $('a[href^="#"').on('click', function(){
+          $('html,body').stop().animate({scrollTop:0}, 500, 'swing');
+        });
+
+        window.addEventListener('hashchange', function(){
+          $('.modal').modal('hide');
+
+          if(!window.location.hash){
+            $('#index-tab').tab('show');
+          }else{
+            if(isAuth()){
+              $(window.location.hash + '-tab').tab('show');
+            }else{
+              if(window.location.hash == '#doc'){
+                $('#doc-tab').tab('show');
+              }else{
+                $('#index-tab').tab('show');
+              }
+              
+            }
+          }
+        }, false);
+
+        $('.loading').delay(1000).fadeOut(function(){$(this).remove()});
+      })
+    </script>
+  </body>
+</html>
