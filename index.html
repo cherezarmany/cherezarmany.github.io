@@ -819,7 +819,7 @@
           let name = $('.review-form input[name=name]');
           let mess = $('.review-form textarea');
 
-          $('.reviews').append($('<div class="item"><div class="d-flex"><img src="/img/loading.gif"><div class="inner"><div class="author">'+name.val()+'</div><div class="text">'+mess.val()+'</div><div class="date">Опубликовано только что</div></div></div></div>').hide().fadeIn(2000));
+          $('.reviews').append($('<div class="item"><div class="d-flex"><img src="/loading.gif"><div class="inner"><div class="author">'+name.val()+'</div><div class="text">'+mess.val()+'</div><div class="date">Опубликовано только что</div></div></div></div>').hide().fadeIn(2000));
           name.val('');
           mess.val('');
           return false;
